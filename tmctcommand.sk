@@ -1,0 +1,83 @@
+#スペクテイターコマンド-----------------------------------------------------------------------------------------------------
+command /spectator:
+    trigger:
+        if player have emerald:
+            remove 2 emerald from player
+            broadcast "&7[&3TMCT&7] &d%player%&bがスペクテイターコマンドを使用しました"
+            set {start.spectator.%player%} to location of player
+            send "&7[&3TMCT&7] &bスペクテイターのスタート地点を保存しました"
+            set player's gamemode to spectator
+            set {spectatorseconds.%player%} to 30
+            loop 31 time:
+                wait 1 seconds
+                set action bar of player to "残り時間 : %{spectatorseconds.%player%}% 秒"
+                remove 1 from {spectatorseconds.%player%}
+            teleport player to {start.spectator.%player%}
+            set player's gamemode to survival
+            stop
+        else:
+            send "&7[&3TMCT&7] &bおやおや？ &dエメラルド &bを持っていないようです"
+            stop
+
+
+
+#採掘速度上昇コマンド-----------------------------------------------------------------------------------------------------
+command /haste:
+    trigger:
+        if {hastecommand.%player%} is false:
+            if player have emerald:
+                set {hastecommand.%player%} to true
+                remove 16 emerald from player
+                broadcast "&7[&3TMCT&7] &d%player%&bが採掘速度上昇コマンドを使用しました"
+                command "/effect clear %player% minecraft:haste"
+                command "/effect give %player% minecraft:haste 60 1 "
+                set {hasteseconds.%player%} to 58
+                loop 58 time:
+                    wait 1 seconds
+                    set action bar of player to "残り時間 : %{hasteseconds.%player%}% 秒"
+                    remove 1 from {hasteseconds.%player%}
+                set {hastecommand.%player%} to false
+                stop
+
+            else:
+                send "&7[&3TMCT&7] &bあれれ？ &dエメラルド &bを持ってないよ ^^"
+                stop
+        if {hastecommand.%player%} is not set:
+            set {hastecommand.%player%} to false
+            stop
+        if {hastecommand.%player%} is true:
+            send "&7[&3TMCT&7] &b連続で使用しないでね ^^;"
+
+
+
+#死亡位置確認コマンド-----------------------------------------------------------------------------------------------------
+on death of player:
+    set {deathlocation.%player%} to location of player
+    send "&7[&3TMCT&7]&bあなたの死亡位置を記録しました"
+    send "&7[&3TMCT&7]&b&7[/deathlocation&7]で確認できます"
+
+
+command /deathlocation:
+    trigger:
+        if {deathlocation.%player%} is set:
+            send "&7[&3TMCT&7]&bあなたが前回死亡した位置は&d%{deathlocation.%player%}%&bです"
+        else:
+            send "&7[&3TMCT&7]&bあなたは死亡していません"
+
+
+
+#ヘルプコマンド-----------------------------------------------------------------------------------------------------
+command /tmcthelp:
+    trigger:
+        send "&d----TMCTSERVER HELP----"
+        send "&bコマンド一覧"
+        send "&7[&e/spectator&7]"
+        send "エメラルド一個を消費し、１０秒間スペクテイターモードになる"
+        send "コマンドを実行した位置は保存され、１０秒後にもとの位置に戻る"
+        send ""
+        send "&7[&e/haste&7]"
+        send "エメラルドを１６個消費し、６０秒間採掘速度が上昇する"
+        send ""
+        send "&7[&e/deathlocation&7]"
+        send "前回の死亡した位置を表示するコマンド"
+        send "&d-----------------------"

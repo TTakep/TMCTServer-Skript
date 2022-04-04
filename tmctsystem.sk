@@ -1,0 +1,9 @@
+#うざいモブを消す
+on spawn of bat:
+    cancel event
+
+on spawn of phantom:
+    cancel event
+
+on spawn of pillager:
+    cancel event

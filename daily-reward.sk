@@ -1,0 +1,58 @@
+on join:
+    wait 10 seconds
+    set {waited} to difference between {claim.%player%} and now
+    if {waited} is less than 24 hours:
+        send "&7[&3Bonus&7]&fまだ24時間経過していないようです"
+        send "&7[&3Bonus&7]&f残り&d%difference between {waited} and 24 hours%&fです"
+        stop
+    set {claim.%player%} to now
+    send "&7[&3Bonus&7]ログインボーナスを獲得しました"
+    chance of 50%:
+        give 7 emerald block to player
+        stop
+    chance of 30%:
+        give 14 emerald block to player
+        stop
+    chance of 10%:
+        give 21 emerald block to player
+        stop
+    chance of 5%:
+        give 2 diamond block to player
+        stop
+    chance of 3%:
+        give 3 diamond block to player
+        stop
+    chance of 1%:
+        give 1 elytra block to player
+        stop
+    chance of 0.5%:
+        give 32 diamond block to player
+        stop
+    chance of 0.5%:
+        give 1 dragon egg to player
+        stop
+    else:
+        chance of 50%:
+            give 7 emerald block to player
+            stop
+        chance of 30%:
+            give 14 emerald block to player
+            stop
+        chance of 10%:
+            give 21 emerald block to player
+            stop
+        chance of 5%:
+            give 2 diamond block to player
+            stop
+        chance of 3%:
+            give 3 diamond block to player
+            stop
+        chance of 1%:
+            give 1 elytra block to player
+            stop
+        chance of 0.5%:
+            give 32 diamond block to player
+            stop
+        chance of 0.5%:
+            give 1 dragon egg to player
+            stop

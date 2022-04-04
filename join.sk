@@ -1,0 +1,17 @@
+on join:
+    set the join message to "&e%player% さんが参加しました。"
+    wait 1 seconds
+    send player title "&9--Welcome to Main--" with subtitle "&7TMCT Server" for 5 seconds
+    send ""
+    send "&d------------------------------------------------"
+    send "&7[&3TMCT&7] &fこんにちは &e%player%さん！！"
+    send ""
+    send "ログイン報酬機能が追加されました！"
+    send ""
+    send "コマンド一覧は&7[&3/tmcthelp&7]&fで見ることができます。"
+    send "&dバグ&fや&d不具合&fの報告はdiscordまで"
+    send "&7[&3MAP1&7] &f http://tmctserver.ddns.net:8123"
+    send "&7[&3MAP2&7] &f http://tmctserver.ddns.net:8100"
+    send "&d------------------------------------------------"
+on quit:
+    set the quit message to "&e%player% さんが退出しました。"
