@@ -25,7 +25,7 @@ command /spectator:
 command /haste:
     trigger:
         if {hastecommand.%player%} is false:
-            if player have emerald:
+            if player have 16 emerald:
                 set {hastecommand.%player%} to true
                 remove 16 emerald from player
                 broadcast "&7[&3TMCT&7] &d%player%&bが採掘速度上昇コマンドを使用しました"
@@ -63,6 +63,40 @@ command /deathlocation:
             send "&7[&3TMCT&7]&bあなたが前回死亡した位置は&d%{deathlocation.%player%}%&bです"
         else:
             send "&7[&3TMCT&7]&bあなたは死亡していません"
+
+
+
+#透明額縁付与コマンド-----------------------------------------------------------------------------------------------------
+command /Invisibleframe64:
+    permission: Invisibleframe.command
+    trigger:
+        if player have 64 Item frame:
+            remove 64 Item frame from player
+            command "/give %player% minecraft:item_frame{EntityTag:{Invisible:1}} 64"
+            send "&7[&3TMCT&7]&b透明な額縁に交換しました 細心の注意を払ってお使いください"
+        else:
+            send "&7[&3TMCT&7]&b額縁64個を持っていないようです"
+
+command /Invisibleframe32:
+    permission: Invisibleframe.command
+    trigger:
+        if player have 32 Item frame:
+            remove 32 Item frame from player
+            command "/give %player% minecraft:item_frame{EntityTag:{Invisible:1}} 32"
+            send "&7[&3TMCT&7]&b透明な額縁に交換しました 細心の注意を払ってお使いください"
+        else:
+            send "&7[&3TMCT&7]&b額縁32個を持っていないようです"
+
+
+command /Invisibleframe16:
+    permission: Invisibleframe.command
+    trigger:
+        if player have 16 Item frame:
+            remove 16 Item frame from player
+            command "/give %player% minecraft:item_frame{EntityTag:{Invisible:1}} 16"
+            send "&7[&3TMCT&7]&b透明な額縁に交換しました 細心の注意を払ってお使いください"
+        else:
+            send "&7[&3TMCT&7]&b額縁16個を持っていないようです"
 
 
 
