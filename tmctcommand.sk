@@ -1,23 +1,30 @@
 #スペクテイターコマンド-----------------------------------------------------------------------------------------------------
 command /spectator:
     trigger:
-        if player have 2 emerald:
-            remove 2 emerald from player
-            broadcast "&7[&3TMCT&7] &d%player%&bがスペクテイターコマンドを使用しました"
-            set {start.spectator.%player%} to location of player
-            send "&7[&3TMCT&7] &bスペクテイターのスタート地点を保存しました"
-            set player's gamemode to spectator
-            set {spectatorseconds.%player%} to 30
-            loop 31 time:
-                wait 1 seconds
-                set action bar of player to "残り時間 : %{spectatorseconds.%player%}% 秒"
-                remove 1 from {spectatorseconds.%player%}
-            teleport player to {start.spectator.%player%}
-            set player's gamemode to survival
+        if {spectatorcomand.%player%} is false:
+            if player have 2 emerald:
+                set {spectatorcomand.%player%} to true
+                remove 2 emerald from player
+                broadcast "&7[&3TMCT&7] &d%player%&bがスペクテイターコマンドを使用しました"
+                set {start.spectator.%player%} to location of player
+                send "&7[&3TMCT&7] &bスペクテイターのスタート地点を保存しました"
+                set player's gamemode to spectator
+                set {spectatorseconds.%player%} to 30
+                loop 31 time:
+                    wait 1 seconds
+                    set action bar of player to "残り時間 : %{spectatorseconds.%player%}% 秒"
+                    remove 1 from {spectatorseconds.%player%}
+                teleport player to {start.spectator.%player%}
+                set player's gamemode to survival
+                stop
+            else:
+                send "&7[&3TMCT&7] &bおやおや？ &dエメラルド &bを持っていないようです"
+                stop
+        if {spectatorcomand.%player%} is not set:
+            set {spectatorcomand.%player%} to false
             stop
-        else:
-            send "&7[&3TMCT&7] &bおやおや？ &dエメラルド &bを持っていないようです"
-            stop
+        if {spectatorcomand.%player%} is true:
+            send "&7[&3TMCT&7] &b連続で使用しないでね ^^;"
 
 
 
