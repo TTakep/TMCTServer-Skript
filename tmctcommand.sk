@@ -1,7 +1,7 @@
 #スペクテイターコマンド-----------------------------------------------------------------------------------------------------
 command /spectator:
     trigger:
-        if player have emerald:
+        if player have 2 emerald:
             remove 2 emerald from player
             broadcast "&7[&3TMCT&7] &d%player%&bがスペクテイターコマンドを使用しました"
             set {start.spectator.%player%} to location of player
