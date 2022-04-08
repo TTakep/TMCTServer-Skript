@@ -10,6 +10,7 @@ on join:
     send ""
     send "コマンド一覧は&7[&3/tmcthelp&7]&fで見ることができます。"
     send "&dバグ&fや&d不具合&fの報告はdiscordまで"
+    send ""
     send "&7[&3MAP1&7] &f http://tmctserver.ddns.net:8123"
     send "&7[&3MAP2&7] &f http://tmctserver.ddns.net:8100"
     send "&d------------------------------------------------"
