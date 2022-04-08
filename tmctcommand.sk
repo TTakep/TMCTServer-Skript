@@ -5,9 +5,9 @@ command /spectator:
             if player have 2 emerald:
                 set {spectatorcomand.%player%} to true
                 remove 2 emerald from player
-                broadcast "&7[&3TMCT&7] &d%player%&bがスペクテイターコマンドを使用しました"
+                broadcast "&7[&3Spectator&7] &d%player%&bがスペクテイターコマンドを使用しました"
                 set {start.spectator.%player%} to location of player
-                send "&7[&3TMCT&7] &bスペクテイターのスタート地点を保存しました"
+                send "&7[&3Spectator&7] &bスペクテイターのスタート地点を保存しました"
                 set player's gamemode to spectator
                 set {spectatorseconds.%player%} to 30
                 loop 31 time:
@@ -16,15 +16,16 @@ command /spectator:
                     remove 1 from {spectatorseconds.%player%}
                 teleport player to {start.spectator.%player%}
                 set player's gamemode to survival
+                set {spectatorcomand.%player%} to false
                 stop
             else:
-                send "&7[&3TMCT&7] &bおやおや？ &dエメラルド &bを持っていないようです"
+                send "&7[&3Spectator&7] &bおやおや？ &dエメラルド &bを持っていないようです"
                 stop
         if {spectatorcomand.%player%} is not set:
             set {spectatorcomand.%player%} to false
             stop
         if {spectatorcomand.%player%} is true:
-            send "&7[&3TMCT&7] &b連続で使用しないでね ^^;"
+            send "&7[&3Spectator&7] &b連続で使用しないでね ^^;"
 
 
 
@@ -35,7 +36,7 @@ command /haste:
             if player have 16 emerald:
                 set {hastecommand.%player%} to true
                 remove 16 emerald from player
-                broadcast "&7[&3TMCT&7] &d%player%&bが採掘速度上昇コマンドを使用しました"
+                broadcast "&7[&3Haste&7] &d%player%&bが採掘速度上昇コマンドを使用しました"
                 command "/effect clear %player% minecraft:haste"
                 command "/effect give %player% minecraft:haste 60 1 "
                 set {hasteseconds.%player%} to 58
@@ -47,29 +48,29 @@ command /haste:
                 stop
 
             else:
-                send "&7[&3TMCT&7] &bあれれ？ &dエメラルド &bを持ってないよ ^^"
+                send "&7[&3Haste&7] &bあれれ？ &dエメラルド &bを持ってないよ ^^"
                 stop
         if {hastecommand.%player%} is not set:
             set {hastecommand.%player%} to false
             stop
         if {hastecommand.%player%} is true:
-            send "&7[&3TMCT&7] &b連続で使用しないでね ^^;"
+            send "&7[&3Haste&7] &b連続で使用しないでね ^^;"
 
 
 
 #死亡位置確認コマンド-----------------------------------------------------------------------------------------------------
 on death of player:
     set {deathlocation.%player%} to location of player
-    send "&7[&3TMCT&7]&bあなたの死亡位置を記録しました"
-    send "&7[&3TMCT&7]&b&7[/deathlocation&7]で確認できます"
+    send "&7[&3Deathlocation&7]&bあなたの死亡位置を記録しました"
+    send "&7[&3Deathlocation&7]&b&7[/deathlocation&7]で確認できます"
 
 
-command /deathlocation:
+command /Deathlocation:
     trigger:
         if {deathlocation.%player%} is set:
-            send "&7[&3TMCT&7]&bあなたが前回死亡した位置は&d%{deathlocation.%player%}%&bです"
+            send "&7[&3Deathlocation&7]&bあなたが前回死亡した位置は&d%{deathlocation.%player%}%&bです"
         else:
-            send "&7[&3TMCT&7]&bあなたは死亡していません"
+            send "&7[&3Deathlocation&7]&bあなたは死亡していません"
 
 
 
@@ -80,9 +81,9 @@ command /Invisibleframe64:
         if player have 64 Item frame:
             remove 64 Item frame from player
             command "/give %player% minecraft:item_frame{EntityTag:{Invisible:1}} 64"
-            send "&7[&3TMCT&7]&b透明な額縁に交換しました 細心の注意を払ってお使いください"
+            send "&7[&3Invisibleframe&7]&b透明な額縁に交換しました 細心の注意を払ってお使いください"
         else:
-            send "&7[&3TMCT&7]&b額縁64個を持っていないようです"
+            send "&7[&3Invisibleframe&7]&b額縁64個を持っていないようです"
 
 command /Invisibleframe32:
     permission: Invisibleframe.command
@@ -90,9 +91,9 @@ command /Invisibleframe32:
         if player have 32 Item frame:
             remove 32 Item frame from player
             command "/give %player% minecraft:item_frame{EntityTag:{Invisible:1}} 32"
-            send "&7[&3TMCT&7]&b透明な額縁に交換しました 細心の注意を払ってお使いください"
+            send "&7[&3Invisibleframe&7]&b透明な額縁に交換しました 細心の注意を払ってお使いください"
         else:
-            send "&7[&3TMCT&7]&b額縁32個を持っていないようです"
+            send "&7[&3Invisibleframe&7]&b額縁32個を持っていないようです"
 
 
 command /Invisibleframe16:
@@ -101,11 +102,30 @@ command /Invisibleframe16:
         if player have 16 Item frame:
             remove 16 Item frame from player
             command "/give %player% minecraft:item_frame{EntityTag:{Invisible:1}} 16"
-            send "&7[&3TMCT&7]&b透明な額縁に交換しました 細心の注意を払ってお使いください"
+            send "&7[&3Invisibleframe&7]&b透明な額縁に交換しました 細心の注意を払ってお使いください"
         else:
-            send "&7[&3TMCT&7]&b額縁16個を持っていないようです"
+            send "&7[&3Invisibleframe&7]&b額縁16個を持っていないようです"
 
 
+
+#ニンジン棒取得コマンド-----------------------------------------------------------------------------------------------------
+command /Carrotstick [<text>]:
+    permission: Carrotstick.command
+    trigger:
+        if arg-1 is set:
+            if arg-1 is "delete" :
+                command "/clear %player% minecraft:carrot_on_a_stick"
+                send "&7[&3Carrot&7]&bニンジン付きの棒を削除しました"
+            else:
+                command "/give %player% minecraft:carrot_on_a_stick{CustomModelData:%arg-1%}"
+                send "&7[&3Carrot&7]&bCustmoModelData No.%arg-1%のニンジン付きの棒を付与しました"
+        if arg-1 is not set:
+            send "&d----------------使用方法・How to use----------------"
+            send "&7[&3Carrot&7] &bカスタムモデルデータ月のニンジン付きの棒"
+            send "&7[&3Carrot&7] &b例：/carrot_on_a_stick 1"
+            send "&7[&3Carrot&7] &b手元に持っているニンジン付きの棒を削除"
+            send "&7[&3Carrot&7] &b例：/carrotstick delete"
+            send "&d---------------------------------------------------"
 
 #ヘルプコマンド-----------------------------------------------------------------------------------------------------
 command /tmcthelp:
