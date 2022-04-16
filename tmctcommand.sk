@@ -2,9 +2,9 @@
 command /spectator:
     trigger:
         if {spectatorcomand.%player%} is false:
-            if player have 2 emerald:
+            if player have 1 emerald:
                 set {spectatorcomand.%player%} to true
-                remove 2 emerald from player
+                remove 1 emerald from player
                 broadcast "&7[&3Spectator&7] &d%player%&bがスペクテイターコマンドを使用しました"
                 set {start.spectator.%player%} to location of player
                 send "&7[&3Spectator&7] &bスペクテイターのスタート地点を保存しました"
