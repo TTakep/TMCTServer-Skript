@@ -7,6 +7,7 @@ on join:
         stop
     set {claim.%player%} to now
     send "&7[&3Bonus&7]ログインボーナスを獲得しました"
+    give 7 emerald block to player
     chance of 50%:
         give 7 emerald block to player
         stop
