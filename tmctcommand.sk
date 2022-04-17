@@ -121,11 +121,13 @@ command /Carrotstick [<text>]:
                 send "&7[&3Carrot&7]&bCustmoModelData No.%arg-1%のニンジン付きの棒を付与しました"
         if arg-1 is not set:
             send "&d----------------使用方法・How to use----------------"
-            send "&7[&3Carrot&7] &bカスタムモデルデータ月のニンジン付きの棒"
+            send "&7[&3Carrot&7] &bカスタムモデルデータ付きのニンジン付きの棒"
             send "&7[&3Carrot&7] &b例：/carrot_on_a_stick 1"
             send "&7[&3Carrot&7] &b手元に持っているニンジン付きの棒を削除"
             send "&7[&3Carrot&7] &b例：/carrotstick delete"
             send "&d---------------------------------------------------"
+
+
 
 #ヘルプコマンド-----------------------------------------------------------------------------------------------------
 command /tmcthelp:
