@@ -7,3 +7,11 @@ on spawn of phantom:
 
 on spawn of pillager:
     cancel event
+
+
+#エンダーマンうざい
+on enderman pickup:
+    cancel event
+
+on enderman place:
+    cancel event
