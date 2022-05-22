@@ -115,7 +115,7 @@ command /Invisibleframe:
             command "/give %player% minecraft:item_frame{EntityTag:{Invisible:1}} 1"
             send "&7[&3Invisibleframe&7]&b透明な額縁に交換しました 細心の注意を払ってお使いください"
         else:
-            send "&7[&3Invisibleframe&7]&b額縁16個を持っていないようです"
+            send "&7[&3Invisibleframe&7]&b額縁を持っていないようです"
 
 
 
