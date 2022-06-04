@@ -1,0 +1,60 @@
+on rightclick holding stick:
+    if player's tool is stick named "&6サウンドコマンド設置棒":
+        set {playsound.commandblock.location.%player%} to location of targeted block
+        set {playsound.commandblock.undo.%player%} to block data of targeted block
+        set {playsound.commandblock.location.x.%player%} to x-coordinate of location of {playsound.commandblock.location.%player%}-0.5
+        set {playsound.commandblock.location.y.%player%} to y-coordinate of location of {playsound.commandblock.location.%player%}-0.5
+        set {playsound.commandblock.location.z.%player%} to z-coordinate of location of {playsound.commandblock.location.%player%}-0.5
+        message "&6コマンドブロックの位置を設定しました&7(%{playsound.commandblock.location.x.%player%}% , %{playsound.commandblock.location.y.%player%}% , %{playsound.commandblock.location.z.%player%}% , %{playsound.commandblock.undo.%player%}%)"
+        stop
+
+
+
+command /playcommand [<text>] [<text>] [<text>] [<text>] [<text>] [<text>] [<text>] [<text>] [<text>]:
+    permission: Playsound.Commandblock
+    trigger:
+        if arg-1 is "undo":
+            if {playsound.commandblock.undo.%player%} is set:
+                command "/setblock %{playsound.commandblock.location.x.%player%}% %{playsound.commandblock.location.y.%player%}% %{playsound.commandblock.location.z.%player%}% %{playsound.commandblock.undo.%player%}% replace"
+                delete {playsound.commandblock.undo.%player%}
+                send "&6作業を取り消しました"
+                stop
+            else:
+                send "&6場所を指定していません"
+        if arg-1 is not "undo":
+            if arg-1 is set:
+                set {playsound.commandblock.command1.%player%} to arg-1
+                set {playsound.commandblock.command2.%player%} to arg-2
+                set {playsound.commandblock.command3.%player%} to arg-3
+                set {playsound.commandblock.command4.%player%} to arg-4
+                set {playsound.commandblock.command5.%player%} to arg-5
+                set {playsound.commandblock.command6.%player%} to arg-6
+                set {playsound.commandblock.command7.%player%} to arg-7
+                set {playsound.commandblock.command8.%player%} to arg-8
+                set {playsound.commandblock.command9.%player%} to arg-9
+                command "/setblock %{playsound.commandblock.location.x.%player%}% %{playsound.commandblock.location.y.%player%}% %{playsound.commandblock.location.z.%player%}% minecraft:command_block{Command:""playsound %{playsound.commandblock.command1.%player%}% %{playsound.commandblock.command2.%player%}% %{playsound.commandblock.command3.%player%}% %{playsound.commandblock.command4.%player%}% %{playsound.commandblock.command5.%player%}% %{playsound.commandblock.command6.%player%}% %{playsound.commandblock.command7.%player%}% %{playsound.commandblock.command8.%player%}% %{playsound.commandblock.command9.%player%}%""} replace"
+                send "&6%{playsound.commandblock.location.x.%player%}% %{playsound.commandblock.location.y.%player%}% %{playsound.commandblock.location.z.%player%}% にコマンドブロックを設置しました"
+                stop
+        if arg-1 is not set:
+            if player do not have stick named "&6サウンドコマンド設置棒":
+                give stick named "&6サウンドコマンド設置棒" to player
+                send "&9%player%&6はサウンドコマンド設置棒を手に入れた"
+                stop
+            if player have stick named "&6サウンドコマンド設置棒":
+                remove stick named "&6サウンドコマンド設置棒" from player
+                send "&9%player%&6はサウンドコマンド設置棒を手放した"
+                delete {playsound.commandblock.command1.%player%}
+                delete {playsound.commandblock.command2.%player%}
+                delete {playsound.commandblock.command3.%player%}
+                delete {playsound.commandblock.command4.%player%}
+                delete {playsound.commandblock.command5.%player%}
+                delete {playsound.commandblock.command6.%player%}
+                delete {playsound.commandblock.command7.%player%}
+                delete {playsound.commandblock.command8.%player%}
+                delete {playsound.commandblock.command9.%player%}
+                delete {playsound.commandblock.location.%player%}
+                delete {playsound.commandblock.undo.%player%}
+                delete {playsound.commandblock.location.x.%player%}
+                delete {playsound.commandblock.location.y.%player%}
+                delete {playsound.commandblock.location.z.%player%}
+                stop

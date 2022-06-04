@@ -55,7 +55,8 @@ command /karaokespeaker <text> <text>:
             set {karaoke.speaker.right} to arg-2
             send "&6左のスピーカーを%{karaoke.speaker.left}%に設定しました"
             send "&6右のスピーカーを%{karaoke.speaker.right}%に設定しました"
-
+            stop
+    
 
 
 #カラオケシステム全リセット
@@ -77,5 +78,4 @@ command /karaokecancel:
         delete {karaoke.speaker.left}
         delete {karaoke.speaker.right}
         send "&6カラオケシステムのすべての変数をカラにしました"
-
-
+        stop

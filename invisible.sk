@@ -1,0 +1,38 @@
+on right click on a item frame with stick:
+    if player's tool is stick named "&6透明化":
+        if event-entity is Item frame:
+            cancel event
+            set {Invisible.uuid} to target entity's uuid
+            send "%{Invisible.uuid}%&6を&9透明化&6しました" to player
+            command "/data merge entity %{Invisible.uuid}% {Invisible:1}"
+            delete {Invisible.uuid}
+            stop
+
+
+
+on right click on a item frame with stick:
+    if player's tool is stick named "&6透明化解除":
+        if event-entity is Item frame:
+            cancel event
+            set {Invisible.uuid.delete} to target entity's uuid
+            send "%{Invisible.uuid.delete}%&6を&9透明化解除&6しました" to player
+            command "/data merge entity %{Invisible.uuid.delete}% {Invisible:0}"
+            delete {Invisible.uuid.delete}
+            stop
+
+
+
+command /Invisibleframetool:
+    permission: Invisibleframe.command
+    trigger:
+        if player do not have stick named "&6透明化":
+            if player do not have stick named "&6透明化解除":
+                give stick named "&6透明化" to player
+                give stick named "&6透明化解除" to player
+                send "&6反応しない場合は覗き込む角度を変えてください"
+                stop
+        if player have stick named "&6透明化":
+            remove stick named "&6透明化" from player
+            remove stick named "&6透明化解除" from player
+            send "&6設定棒を削除しました"
+            stop
