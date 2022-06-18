@@ -41,8 +41,10 @@ command /Deathlocation:
     trigger:
         if {deathlocation.%player%} is set:
             send "&7[&3Deathlocation&7]&bあなたが前回死亡した位置は&d%{deathlocation.%player%}%&bです"
+            stop
         else:
             send "&7[&3Deathlocation&7]&bあなたは死亡していません"
+            stop
 
 
 
@@ -79,7 +81,7 @@ command /Invisibleframe16:
             send "&7[&3Invisibleframe&7]&b額縁16個を持っていないようです"
 
 
-command /Invisibleframe:
+command /Invisibleframe1:
     permission: Invisibleframe.command
     trigger:
         if player have 1 Item frame:

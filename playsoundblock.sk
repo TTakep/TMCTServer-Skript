@@ -11,7 +11,7 @@ on rightclick holding stick:
 
 
 command /playcommand [<text>] [<text>] [<text>] [<text>] [<text>] [<text>] [<text>] [<text>] [<text>]:
-    permission: Playsound.Commandblock
+    permission: playsound.commandblock
     trigger:
         if arg-1 is "undo":
             if {playsound.commandblock.undo.%player%} is set:
@@ -21,6 +21,7 @@ command /playcommand [<text>] [<text>] [<text>] [<text>] [<text>] [<text>] [<tex
                 stop
             else:
                 send "&6場所を指定していません"
+                stop
         if arg-1 is not "undo":
             if arg-1 is set:
                 set {playsound.commandblock.command1.%player%} to arg-1
@@ -32,7 +33,7 @@ command /playcommand [<text>] [<text>] [<text>] [<text>] [<text>] [<text>] [<tex
                 set {playsound.commandblock.command7.%player%} to arg-7
                 set {playsound.commandblock.command8.%player%} to arg-8
                 set {playsound.commandblock.command9.%player%} to arg-9
-                command "/setblock %{playsound.commandblock.location.x.%player%}% %{playsound.commandblock.location.y.%player%}% %{playsound.commandblock.location.z.%player%}% minecraft:command_block{Command:""playsound %{playsound.commandblock.command1.%player%}% %{playsound.commandblock.command2.%player%}% %{playsound.commandblock.command3.%player%}% %{playsound.commandblock.command4.%player%}% %{playsound.commandblock.command5.%player%}% %{playsound.commandblock.command6.%player%}% %{playsound.commandblock.command7.%player%}% %{playsound.commandblock.command8.%player%}% %{playsound.commandblock.command9.%player%}%""} replace"
+                command "/setblock %{playsound.commandblock.location.x.%player%}% %{playsound.commandblock.location.y.%player%}% %{playsound.commandblock.location.z.%player%}% minecraft:command_block{Command:""playsound %{playsound.commandblock.command1.%player%}% %{playsound.commandblock.command2.%player%}% %{playsound.commandblock.command3.%player%}% %{playsound.commandblock.command4.%player%}% %{playsound.commandblock.command5.%player%}% %{playsound.commandblock.command6.%player%}% %{playsound.commandblock.command7.%player%}% %{playsound.commandblock.command8.%player%}% %{playsound.commandblock.command9.%player%}%""} destroy"
                 send "&6%{playsound.commandblock.location.x.%player%}% %{playsound.commandblock.location.y.%player%}% %{playsound.commandblock.location.z.%player%}% にコマンドブロックを設置しました"
                 stop
         if arg-1 is not set:

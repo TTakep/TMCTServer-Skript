@@ -1,6 +1,6 @@
 #右スピーカー座標設定
-on rightclick holding stick:
-    if player's tool is stick named "マイク":
+on rightclick holding carrot on stick:
+    if player's tool is carrot on stick named "マイク":
         set {karaoke.location.right} to location of targeted block
         set {karaoke.location.right.x} to x-coordinate of location of {karaoke.location.right}
         set {karaoke.location.right.y} to y-coordinate of location of {karaoke.location.right}
@@ -11,8 +11,8 @@ on rightclick holding stick:
 
 
 #左スピーカー座標設定
-on leftclick holding stick:
-    if player's tool is stick named "マイク":
+on leftclick holding carrot on stick:
+    if player's tool is carrot on stick named "マイク":
         set {karaoke.location.left} to location of targeted block
         set {karaoke.location.left.x} to x-coordinate of location of {karaoke.location.left}
         set {karaoke.location.left.y} to y-coordinate of location of {karaoke.location.left}
@@ -35,12 +35,12 @@ command /karaoke [<text>] [<text>] [<text>] [<text>]:
             command "/playsound minecraft:extension.karaoke.%{karaoke.speaker.right}%.%{karaoke.sound}% record @a %{karaoke.location.right.x}% %{karaoke.location.right.y}% %{karaoke.location.right.z}% %{karaoke.sound.volume}% %{karaoke.sound.pitch}% %{karaoke.sound.minvolume}%"
             command "/playsound minecraft:extension.karaoke.%{karaoke.speaker.left}%.%{karaoke.sound}% record @a %{karaoke.location.left.x}% %{karaoke.location.left.y}% %{karaoke.location.left.z}% %{karaoke.sound.volume}% %{karaoke.sound.pitch}% %{karaoke.sound.minvolume}%"
         if arg-1 is not set:
-            if player do not have stick named "マイク":
-                give stick named "マイク" to player
+            if player do not have carrot on stick named "マイク":
+                give carrot on stick named "マイク" with custom model data 15 to player
                 send "&9%player%&6はマイクを手に入れた!!"
                 stop    
-            if player have stick named "マイク":
-                remove stick named "マイク" from player
+            if player have carrot on stick named "マイク":
+                remove carrot on stick named "マイク" with custom model data 15 from player
                 send "&9%player%&6はマイクを手放してしまった..."
                 stop
 

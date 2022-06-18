@@ -15,3 +15,24 @@ on enderman pickup:
 
 on enderman place:
     cancel event
+
+
+#ゾンビピグリントラップでピグリンを沸かなくする
+command /piglintrap:
+    trigger:
+        if {piglintrap} is true:
+            set {piglintrap} to false
+            broadcast "ピグリントラップモードをオフにしました"
+            stop
+        if {piglintrap} is false:
+            set {piglintrap} to true
+            broadcast "ピグリントラップモードをオンにしました"
+            stop
+
+on spawn of piglin:
+    if {piglintrap} is true:
+        cancel event
+
+on spawn of piglin brute:
+    if {piglintrap} is true:
+        cancel event
