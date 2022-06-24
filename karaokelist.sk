@@ -1,0 +1,153 @@
+command /karaokelist [<text>]:
+    trigger:
+
+
+# <ページ1>=============  ページ作成　======================================================
+        if arg-1 is "page1":
+            open chest inventory with 6 row named "&lカラオケ曲リスト1" to player
+            
+            set slot 53 of player's current inventory to barrier named "&c&l戻る"
+            set slot 52 of player's current inventory to arrow named "&l次のページ"
+            set slot 51 of player's current inventory to book named "&l1ページ目"
+            set slot 49 of player's current inventory to note block named "&l採点音声ページ"
+
+# <ページ1>=============  1~45まで楽曲　======================================================
+#例)        set slot 1 of player's current inventory to music disc far named "&l楽曲名" with lore "曲ID"
+
+            set slot 0 of player's current inventory to music disc far named "&lシャルル" with lore "charles" 
+            set slot 1 of player's current inventory to music disc far named "&lだから僕は音楽を辞めた" with lore "moonlight"
+
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+# <採点ページ1>==========  ページ作成　======================================================
+        if arg-1 is "saiten1":
+            open chest inventory with 6 row named "&lカラオケ採点音声リスト1" to player
+            
+            set slot 53 of player's current inventory to barrier named "&c&l戻る"
+            set slot 52 of player's current inventory to arrow named "&l次のページ"
+            set slot 51 of player's current inventory to book named "&lカラオケ採点音声リスト1"
+
+# <採点ページ1>==========  1~45まで楽曲　======================================================
+#例)        set slot 1 of player's current inventory to music disc far named "&l楽曲名" with lore "曲ID"
+
+            set slot 0 of player's current inventory to music disc far named "&l分析採点AI" with lore "bunseki_ai" 
+            set slot 1 of player's current inventory to music disc far named "&l分析採点AI 50点" with lore "bunseki_ai_50"
+            set slot 2 of player's current inventory to music disc far named "&l分析採点AI 80点" with lore "bunseki_ai_80"
+            set slot 3 of player's current inventory to music disc far named "&l分析採点AI 90点" with lore "bunseki_ai_90"
+            set slot 4 of player's current inventory to music disc far named "&l分析採点AI 95点" with lore "bunseki_ai_95"
+            set slot 5 of player's current inventory to music disc far named "&l分析採点AI 100点" with lore "bunseki_ai_100"
+            set slot 6 of player's current inventory to music disc far named "&l分析採点マスター" with lore "bunseki_master"
+            set slot 7 of player's current inventory to music disc far named "&l分析採点マスター 50点" with lore "bunseki_master_50"
+            set slot 8 of player's current inventory to music disc far named "&l精密採点Ai" with lore "seimitsu_ai"
+            set slot 9 of player's current inventory to music disc far named "&l精密採点Ai 0点" with lore "seimitsu_ai_0"
+            set slot 10 of player's current inventory to music disc far named "&l精密採点Ai 80点" with lore "seimitsu_ai_80"
+            set slot 11 of player's current inventory to music disc far named "&l精密採点Ai 90点" with lore "seimitsu_ai_90"
+            set slot 12 of player's current inventory to music disc far named "&l精密採点Ai 95点" with lore "seimitsu_ai_95"
+            set slot 13 of player's current inventory to music disc far named "&l精密採点DX-G" with lore "seimitsu_dxg"
+
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+# <ページ1>==========  1~45までの変数動作　==============================================
+on inventory click:
+    name of clicked inventory is "&lカラオケ曲リスト1"
+    cancel event
+#例)if event-item is music disc far named "&l楽曲名1":
+#       set {karaoke.sound} to "曲ID"
+
+    if event-item is music disc far named "&lシャルル":
+        set {karaoke.sound} to "charles"
+        set {karaoke.sound.jp} to "シャルル"
+        player command "/karaoke"
+    if event-item is music disc far named "&lだから僕は音楽を辞めた":
+        set {karaoke.sound} to "moonlight"
+        set {karaoke.sound.jp} to "だから僕は音楽を辞めた"
+        player command "/karaoke"
+
+
+
+# <採点ページ1>==========  1~45までの変数動作　==============================================
+on inventory click:
+    name of clicked inventory is "&lカラオケ採点音声リスト1"
+    cancel event
+#例)if event-item is music disc far named "&l楽曲名1":
+#       set {karaoke.sound} to "曲ID"
+
+    if event-item is music disc far named "&l分析採点AI":
+        set {karaoke.sound} to "bunseki.ai"
+        set {karaoke.sound.jp} to "分析採点AI"
+        player command "/karaoke"
+    if event-item is music disc far named "&l分析採点AI 50点":
+        set {karaoke.sound} to "bunseki.ai.50"
+        set {karaoke.sound.jp} to "分析採点AI 50点"
+        player command "/karaoke"
+    if event-item is music disc far named "&l分析採点AI 80点":
+        set {karaoke.sound} to "bunseki.ai.80"
+        set {karaoke.sound.jp} to "分析採点AI 80点"
+        player command "/karaoke"
+    if event-item is music disc far named "&l分析採点AI 90点":
+        set {karaoke.sound} to "bunseki.ai.90"
+        set {karaoke.sound.jp} to "分析採点AI 90点"
+        player command "/karaoke"
+    if event-item is music disc far named "&l分析採点AI 95点":
+        set {karaoke.sound} to "bunseki.ai.95"
+        set {karaoke.sound.jp} to "分析採点AI 95点"
+        player command "/karaoke"
+    if event-item is music disc far named "&l分析採点AI 100点":
+        set {karaoke.sound} to "bunseki.ai.100"
+        set {karaoke.sound.jp} to "分析採点AI 100点"
+        player command "/karaoke"
+    if event-item is music disc far named "&l分析採点マスター":
+        set {karaoke.sound} to "bunseki.master"
+        set {karaoke.sound.jp} to "分析採点マスター"
+        player command "/karaoke"
+    if event-item is music disc far named "&l分析採点マスター 50点":
+        set {karaoke.sound} to "bunseki.master.50"
+        set {karaoke.sound.jp} to "分析採点マスター 50点"
+        player command "/karaoke"
+    if event-item is music disc far named "&l精密採点Ai":
+        set {karaoke.sound} to "seimitsu.ai"
+        set {karaoke.sound.jp} to "精密採点Ai"
+        player command "/karaoke"
+    if event-item is music disc far named "&l精密採点Ai 0点":
+        set {karaoke.sound} to "seimitsu.ai.0"
+        set {karaoke.sound.jp} to "精密採点Ai 0点"
+        player command "/karaoke"
+    if event-item is music disc far named "&l精密採点Ai 80点":
+        set {karaoke.sound} to "seimitsu.ai.80"
+        set {karaoke.sound.jp} to "精密採点Ai 80点"
+        player command "/karaoke"
+    if event-item is music disc far named "&l精密採点Ai 90点":
+        set {karaoke.sound} to "seimitsu.ai.90"
+        set {karaoke.sound.jp} to "精密採点Ai 90点"
+        player command "/karaoke"
+    if event-item is music disc far named "&l精密採点Ai 95点":
+        set {karaoke.sound} to "seimitsu.ai.95"
+        set {karaoke.sound.jp} to "精密採点Ai 95点"
+        player command "/karaoke"
+    if event-item is music disc far named "&l精密採点DX-G":
+        set {karaoke.sound} to "seimitsu.dxg"
+        set {karaoke.sound.jp} to "精密採点DX-G"
+        player command "/karaoke"
+
+
+
+
+#==========  ページ送りなどのその他システム　========================================
+#<ページ1>
+on inventory click:
+    name of clicked inventory is "&lカラオケ曲リスト1"
+    cancel event
+    if event-item is barrier named "&c&l戻る":
+        player command "/karaoke"
+    if event-item is note block named "&l採点音声ページ":
+        player command "/karaokelist saiten1"
+
+#<採点ページ1>
+on inventory click:
+    name of clicked inventory is "&lカラオケ採点音声リスト1"
+    cancel event
+    if event-item is barrier named "&c&l戻る":
+        player command "/karaokelist page1"
+

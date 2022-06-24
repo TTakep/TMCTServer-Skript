@@ -23,7 +23,7 @@ on leftclick holding carrot on stick:
 
 
 #メインコマンド　曲名 音量 ピッチ 最小音量
-command /karaoke [<text>] [<text>] [<text>] [<text>]:
+command /karaokemanual [<text>] [<text>] [<text>] [<text>]:
     permission: Karaoke.Command
     trigger:
         if arg-1 is set:
@@ -47,15 +47,33 @@ command /karaoke [<text>] [<text>] [<text>] [<text>]:
 
 
 #スピーカーごとの機種選択
-command /karaokespeaker <text> <text>:
+command /karaokespeaker:
     permission: Karaoke.Command
     trigger:
-        if arg-1 is set:
-            set {karaoke.speaker.left} to arg-1
-            set {karaoke.speaker.right} to arg-2
-            send "&6左のスピーカーを%{karaoke.speaker.left}%に設定しました"
-            send "&6右のスピーカーを%{karaoke.speaker.right}%に設定しました"
-            stop
+        open chest inventory with 1 row named "&lカラオケスピーカー設定" to player
+        set slot 0 of player's current inventory to pink concrete named "&d&lDAM_Left"
+        set slot 1 of player's current inventory to light blue concrete named "&b&lJoysound_Left"
+        set slot 3 of player's current inventory to pink concrete named "&d&lDAM_Right"
+        set slot 4 of player's current inventory to light blue concrete named "&b&lJoysound_Right"
+        set slot 8 of player's current inventory to barrier named "&c&l閉じる"
+
+on inventory click:
+    name of clicked inventory is "&lカラオケスピーカー設定"
+    cancel event
+    if event-item is pink concrete named "&d&lDAM_Left":
+        set {karaoke.speaker.left} to "dam"
+        send "&6左のスピーカーを%{karaoke.speaker.left}%に設定しました"
+    if event-item is light blue concrete named "&b&lJoysound_Left":
+        set {karaoke.speaker.left} to "joy"
+        send "&6左のスピーカーを%{karaoke.speaker.left}%に設定しました"
+    if event-item is pink concrete named "&d&lDAM_Right":
+        set {karaoke.speaker.right} to "dam"
+        send "&6右のスピーカーを%{karaoke.speaker.right}%に設定しました"
+    if event-item is light blue concrete named "&b&lJoysound_Right":
+        set {karaoke.speaker.right} to "joy"
+        send "&6右のスピーカーを%{karaoke.speaker.right}%に設定しました"
+    if event-item is barrier named "&c&l閉じる":
+        close player's inventory
     
 
 
@@ -72,10 +90,11 @@ command /karaokecancel:
         delete {karaoke.location.left.y}
         delete {karaoke.location.left.z}
         delete {karaoke.sound}
-        delete {karaoke.sound.volume}
-        delete {karaoke.sound.pitch}
-        delete {karaoke.sound.minvolume}
+        set {karaoke.sound.volume} to 1
+        set {karaoke.sound.pitch} to 1
+        set {karaoke.sound.minvolume} to 0
         delete {karaoke.speaker.left}
         delete {karaoke.speaker.right}
         send "&6カラオケシステムのすべての変数をカラにしました"
         stop
+ 

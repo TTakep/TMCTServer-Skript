@@ -1,0 +1,109 @@
+command /karaoke:
+    permission: Karaoke.Command
+    trigger:
+        open chest inventory with 6 row named "&lカラオケスシステム" to player
+        set slot 0 of player's current inventory to carrot on stick named "&lマイク" with custom model data 15
+
+        set slot 12 of player's current inventory to note block named "&l左スピーカーx%{karaoke.location.left.x}% y%{karaoke.location.left.y}% z%{karaoke.location.left.z}%"
+        set slot 14 of player's current inventory to note block named "&l右スピーカーx%{karaoke.location.right.x}% y%{karaoke.location.right.y}% z%{karaoke.location.right.z}%"
+
+        set slot 21 of player's current inventory to pink concrete named "&d&lDAM_Left"
+        set slot 30 of player's current inventory to light blue concrete named "&b&lJoysound_Left"
+        set slot 23 of player's current inventory to pink concrete named "&d&lDAM_Right"
+        set slot 32 of player's current inventory to light blue concrete named "&b&lJoysound_Right"
+
+        set slot 19 of player's current inventory to redstone block named "&l音量リセット"
+        set slot 28 of player's current inventory to arrow named "&l音量-"
+        set slot 10 of player's current inventory to spectral arrow named "&l音量+"
+
+        set slot 25 of player's current inventory to redstone block named "&lピッチリセット"
+        set slot 34 of player's current inventory to arrow named "&lピッチ♭"
+        set slot 16 of player's current inventory to spectral arrow named "&lピッチ♯"
+
+        set slot 48 of player's current inventory to jukebox named "&l再生"
+        set slot 49 of player's current inventory to music disc 13 named "&l選択中の曲「&d%{karaoke.sound.jp}%&b&l&o」"
+        set slot 50 of player's current inventory to redstone named "&l停止"
+
+        set slot 45 of player's current inventory to iron ingot named "&lカラオケシステムリセット"
+
+        set slot 53 of player's current inventory to barrier named "&c&l閉じる"
+
+on inventory click:
+    name of clicked inventory is "&lカラオケスシステム"
+    cancel event
+    if event-item is carrot on stick named "&lマイク" with custom model data 15:
+        if player do not have carrot on stick named "マイク":
+            give carrot on stick named "マイク" with custom model data 15 to player
+            send "&9%player%&6はマイクを手に入れた!!"
+            stop
+        if player have carrot on stick named "マイク":
+            remove carrot on stick named "マイク" with custom model data 15 from player
+            send "&9%player%&6はマイクを手放してしまった..."
+            stop
+    if event-item is pink concrete named "&d&lDAM_Left":
+        set {karaoke.speaker.left} to "dam"
+        send "&6左のスピーカーを%{karaoke.speaker.left}%に設定しました"
+    if event-item is light blue concrete named "&b&lJoysound_Left":
+        set {karaoke.speaker.left} to "joy"
+        send "&6左のスピーカーを%{karaoke.speaker.left}%に設定しました"
+    if event-item is pink concrete named "&d&lDAM_Right":
+        set {karaoke.speaker.right} to "dam"
+        send "&6右のスピーカーを%{karaoke.speaker.right}%に設定しました"
+    if event-item is light blue concrete named "&b&lJoysound_Right":
+        set {karaoke.speaker.right} to "joy"
+        send "&6右のスピーカーを%{karaoke.speaker.right}%に設定しました"
+    if event-item is barrier named "&c&l閉じる":
+        close player's inventory
+    
+    if event-item is redstone block named "&l音量リセット":
+        set {karaoke.sound.volume} to 1
+        send "%{karaoke.sound.volume}%"
+    if event-item is arrow named "&l音量-":
+        add -0.1 to {karaoke.sound.volume}
+        send "%{karaoke.sound.volume}%"
+    if event-item is spectral arrow named "&l音量+":
+        add 0.1 to {karaoke.sound.volume}
+        send "%{karaoke.sound.volume}%"
+    
+    if event-item is redstone block named "&lピッチリセット":
+        set {karaoke.sound.pitch} to 1
+        send "%{karaoke.sound.pitch}%"
+    if event-item is arrow named "&lピッチ♭":
+        add -0.1 to {karaoke.sound.pitch}
+        send "%{karaoke.sound.pitch}%"
+    if event-item is spectral arrow named "&lピッチ♯":
+        add 0.1 to {karaoke.sound.pitch}
+        send "%{karaoke.sound.pitch}%"
+    
+    if event-item is jukebox named "&l再生":
+        send "&6♪♪♪ Now Playing §a%{karaoke.sound.jp}% &6♪♪♪"
+        command "/playsound minecraft:extension.karaoke.%{karaoke.speaker.right}%.%{karaoke.sound}% record @a %{karaoke.location.right.x}% %{karaoke.location.right.y}% %{karaoke.location.right.z}% %{karaoke.sound.volume}% %{karaoke.sound.pitch}% %{karaoke.sound.minvolume}%"
+        command "/playsound minecraft:extension.karaoke.%{karaoke.speaker.left}%.%{karaoke.sound}% record @a %{karaoke.location.left.x}% %{karaoke.location.left.y}% %{karaoke.location.left.z}% %{karaoke.sound.volume}% %{karaoke.sound.pitch}% %{karaoke.sound.minvolume}%"
+    
+    if event-item is iron ingot named "&lカラオケシステムリセット":
+        delete {karaoke.location.right}
+        delete {karaoke.location.right.x}
+        delete {karaoke.location.right.y}
+        delete {karaoke.location.right.z}
+        delete {karaoke.location.left}
+        delete {karaoke.location.left.x}
+        delete {karaoke.location.left.y}
+        delete {karaoke.location.left.z}
+        delete {karaoke.sound}
+        set {karaoke.sound.volume} to 1
+        set {karaoke.sound.pitch} to 1
+        set {karaoke.sound.minvolume} to 0
+        delete {karaoke.speaker.left}
+        delete {karaoke.speaker.right}
+        send "&6カラオケシステムのすべての変数をカラにしました"
+    
+    if event-item is redstone named "&l停止":
+        command "/stopsound @a record minecraft:extension.karaoke.%{karaoke.speaker.right}%.%{karaoke.sound}%"
+        command "/stopsound @a record minecraft:extension.karaoke.%{karaoke.speaker.left}%.%{karaoke.sound}%"
+
+
+on inventory click:
+    name of clicked inventory is "&lカラオケスシステム"
+    cancel event
+    if event-item is music disc 13 named "&l選択中の曲「&d%{karaoke.sound.jp}%&b&l&o」":
+        player command "/karaokelist page1"
