@@ -36,3 +36,9 @@ on spawn of piglin:
 on spawn of piglin brute:
     if {piglintrap} is true:
         cancel event
+
+
+
+#雷無効化
+on weather change to thunder:
+	cancel event
