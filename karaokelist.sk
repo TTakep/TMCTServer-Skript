@@ -16,6 +16,11 @@ command /karaokelist [<text>]:
 
             set slot 0 of player's current inventory to music disc far named "&lシャルル" with lore "charles" 
             set slot 1 of player's current inventory to music disc far named "&lだから僕は音楽を辞めた" with lore "moonlight"
+            set slot 9 of player's current inventory to music disc far named "&l水平線 by Narashino" with lore "suiheisen.narashino"
+            set slot 10 of player's current inventory to music disc far named "&l夜もすがら君想う by Narashino" with lore "yorumosugara.narashino"
+            set slot 11 of player's current inventory to music disc far named "&l夜もすがら君想う by Simoty" with lore "yorumosugara.simoty"
+            set slot 12 of player's current inventory to music disc far named "&lヨワネハキ by Narashino" with lore "yowanehaki.narashino"
+            set slot 13 of player's current inventory to music disc far named "&lルパン三世のテーマ by Dova" with lore "lupin.dova"
 
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -63,6 +68,26 @@ on inventory click:
     if event-item is music disc far named "&lだから僕は音楽を辞めた":
         set {karaoke.sound} to "moonlight"
         set {karaoke.sound.jp} to "だから僕は音楽を辞めた"
+        player command "/karaoke"
+    if event-item is music disc far named "&l水平線 by Narashino":
+        set {karaoke.sound} to "suiheisen.narashino"
+        set {karaoke.sound.jp} to "水平線 by Narashino"
+        player command "/karaoke"
+    if event-item is music disc far named "&l夜もすがら君想う by Narashino":
+        set {karaoke.sound} to "yorumosugara.narashino"
+        set {karaoke.sound.jp} to "夜もすがら君想う by Narashino"
+        player command "/karaoke"
+    if event-item is music disc far named "&l夜もすがら君想う by Simoty":
+        set {karaoke.sound} to "yorumosugara.simoty"
+        set {karaoke.sound.jp} to "夜もすがら君想う by Simoty"
+        player command "/karaoke"
+    if event-item is music disc far named "&lヨワネハキ by Narashino":
+        set {karaoke.sound} to "yowanehaki.narashino"
+        set {karaoke.sound.jp} to "ヨワネハキ by Narashino"
+        player command "/karaoke"
+    if event-item is music disc far named "&lルパン三世のテーマ by Dova":
+        set {karaoke.sound} to "lupin.dova"
+        set {karaoke.sound.jp} to "ルパン三世のテーマ by Dova"
         player command "/karaoke"
 
 
