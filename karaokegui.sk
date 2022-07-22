@@ -1,7 +1,7 @@
 command /karaoke:
     permission: Karaoke.Command
     trigger:
-        open chest inventory with 6 row named "&lカラオケスシステム" to player
+        open chest inventory with 6 row named "&lカラオケシステム" to player
         set slot 0 of player's current inventory to carrot on stick named "&lマイク" with custom model data 15
 
         set slot 12 of player's current inventory to note block named "&l左スピーカーx%{karaoke.location.left.x}% y%{karaoke.location.left.y}% z%{karaoke.location.left.z}%"
@@ -29,7 +29,7 @@ command /karaoke:
         set slot 53 of player's current inventory to barrier named "&c&l閉じる"
 
 on inventory click:
-    name of clicked inventory is "&lカラオケスシステム"
+    name of clicked inventory is "&lカラオケシステム"
     cancel event
     if event-item is carrot on stick named "&lマイク" with custom model data 15:
         if player do not have carrot on stick named "マイク":
@@ -103,7 +103,7 @@ on inventory click:
 
 
 on inventory click:
-    name of clicked inventory is "&lカラオケスシステム"
+    name of clicked inventory is "&lカラオケシステム"
     cancel event
     if event-item is music disc 13 named "&l選択中の曲「&d%{karaoke.sound.jp}%&b&l&o」":
         player command "/karaokelist page1"
